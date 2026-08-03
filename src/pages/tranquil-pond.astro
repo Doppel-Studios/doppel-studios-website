@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import AccentGlow from '../components/AccentGlow.astro';
+import BannerPlaceholder from '../components/BannerPlaceholder.astro';
 import { games } from '../data/games';
 
 const game = games.find((g) => g.slug === 'tranquil-pond')!;
@@ -13,6 +14,7 @@ const game = games.find((g) => g.slug === 'tranquil-pond')!;
 >
 	<section class="relative overflow-hidden">
 		<AccentGlow />
+		<BannerPlaceholder src={game.banner} />
 		<div class="relative max-w-3xl mx-auto px-6 py-20 text-center">
 			<img
 				src={game.icon}

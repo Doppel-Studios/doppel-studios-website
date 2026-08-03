@@ -22,6 +22,8 @@ export interface Game {
 	accent: string;
 	/** Optional second color for the placeholder badge gradient. Defaults to `accent`. */
 	accent2?: string;
+	/** Wide banner image for the game's hero section. Omit to render a generated abstract placeholder. */
+	banner?: string;
 	href: string;
 	status: 'live' | 'coming-soon';
 	/**
