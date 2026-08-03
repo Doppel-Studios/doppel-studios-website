@@ -1,21 +1,25 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { games } from '../../data/games';
+
+const game = games.find((g) => g.slug === 'tranquil-pond')!;
 ---
 
 <Layout
 	title="Tranquil Pond Roadmap — Doppel Studios"
 	description="See what's coming next for Tranquil Pond."
+	accent={game.accent}
 >
 	<section class="max-w-2xl mx-auto px-6 py-20">
-		<h1 class="text-4xl font-bold mb-2 text-center">Tranquil Pond Roadmap</h1>
-		<p class="text-white/70 mb-10 text-center">Exciting things are coming to Tranquil Pond</p>
+		<h1 class="font-heading text-4xl font-bold mb-2 text-center">Tranquil Pond Roadmap</h1>
+		<p class="text-[var(--text-muted)] mb-10 text-center">Exciting things are coming to Tranquil Pond</p>
 
-		<div class="bg-white/5 border border-white/10 rounded-2xl p-8">
+		<div class="card-surface rounded-2xl p-8">
 			<p class="mb-6">
 				This spring, April showers bring May flowers with Tranquil Pond's first Seasonal Update!
 			</p>
 			<p class="mb-3 font-semibold">Changes include:</p>
-			<ul class="list-disc list-inside space-y-2 text-white/80 mb-6">
+			<ul class="list-disc list-inside space-y-2 text-[var(--text-muted)] mb-6">
 				<li>More flowers to progress through</li>
 				<li>A seasonal update to the area around the pond</li>
 				<li>A visiting creature players can interact with</li>
@@ -24,7 +28,7 @@ import Layout from '../../layouts/Layout.astro';
 				<li>Cloud Saves</li>
 				<li>And more</li>
 			</ul>
-			<p class="text-pink-200">
+			<p class="link-accent">
 				The price of Tranquil Pond's full version will increase when this update is released. Buy
 				Pond+ now to get the Early Adopter price.
 			</p>
