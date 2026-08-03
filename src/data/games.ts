@@ -46,6 +46,7 @@ export const games: Game[] = [
 		name: 'Tranquil Pond',
 		tagline: 'tranquility is a ripple away',
 		icon: '/images/tranquil-pond-icon.png',
+		banner: '/images/tranquil-pond-banner.png',
 		accent: '#ee7a90',
 		href: '/tranquil-pond',
 		status: 'live',
