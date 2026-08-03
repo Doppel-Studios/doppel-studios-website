@@ -1,0 +1,24 @@
+---
+import type { Game } from '../data/games';
+
+interface Props {
+	game: Game;
+	class?: string;
+}
+
+const { game, class: className = '' } = Astro.props;
+const initials = game.initials ?? game.name.slice(0, 2).toUpperCase();
+---
+
+{
+	game.icon ? (
+		<img src={game.icon} alt={game.name} class={className} />
+	) : (
+		<div
+			class={`${className} flex items-center justify-center font-heading font-bold text-white shrink-0`}
+			style={`background: linear-gradient(135deg, ${game.accent}, ${game.accent2 ?? game.accent});`}
+		>
+			{initials}
+		</div>
+	)
+}

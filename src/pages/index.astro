@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import AccentGlow from '../components/AccentGlow.astro';
+import GameIcon from '../components/GameIcon.astro';
 import { games } from '../data/games';
 ---
 
@@ -37,9 +38,16 @@ import { games } from '../data/games';
 						class="card-surface group rounded-2xl p-6 flex items-center gap-5 transition-colors hover:border-[var(--accent)]"
 						style={`--accent: ${game.accent};`}
 					>
-						<img src={game.icon} alt={game.name} class="w-20 h-20 rounded-xl shrink-0 object-cover" />
+						<GameIcon game={game} class="w-20 h-20 rounded-xl object-cover text-2xl" />
 						<div class="min-w-0">
-							<h3 class="font-heading text-xl font-semibold mb-1">{game.name}</h3>
+							<div class="flex items-center gap-2 mb-1">
+								<h3 class="font-heading text-xl font-semibold">{game.name}</h3>
+								{game.status === 'coming-soon' && (
+									<span class="text-[10px] uppercase tracking-wide font-semibold px-2 py-0.5 rounded-full link-accent border border-current">
+										Coming Soon
+									</span>
+								)}
+							</div>
 							<p class="text-[var(--text-muted)] text-sm mb-2 truncate">{game.tagline}</p>
 							<span class="text-sm font-medium link-accent">Learn more &rarr;</span>
 						</div>

@@ -1,0 +1,50 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AccentGlow from '../components/AccentGlow.astro';
+import GameIcon from '../components/GameIcon.astro';
+import { games } from '../data/games';
+
+const game = games.find((g) => g.slug === 'gallery-gestalt')!;
+---
+
+<Layout
+	title="Gallery Gestalt — Doppel Studios"
+	description="Gallery Gestalt is a collaborative tabletop game where you play artists making masterpieces for a gallery, responding to the momentous times around you."
+	accent={game.accent}
+>
+	<section class="relative overflow-hidden">
+		<AccentGlow />
+		<div class="relative max-w-2xl mx-auto px-6 py-24 text-center">
+			<GameIcon game={game} class="w-28 h-28 mx-auto mb-8 rounded-3xl text-4xl" />
+			<span class="btn-accent inline-block px-3 py-1 rounded-full text-xs font-heading font-semibold mb-4">
+				Coming Soon
+			</span>
+			<h1 class="font-heading text-4xl sm:text-5xl font-bold mb-4">{game.name}</h1>
+			<p class="text-[var(--text-muted)] text-lg mb-12 max-w-lg mx-auto">
+				Play as artists in a unique world, making masterpieces for a gallery to respond to the
+				momentous times around them.
+			</p>
+
+			<div class="card-surface rounded-3xl px-8 py-10">
+				<h2 class="font-heading text-xl font-semibold mb-3">Be the first to know</h2>
+				<p class="text-[var(--text-muted)] mb-6">
+					Gallery Gestalt is still in development. Sign up to hear when it's ready to play.
+				</p>
+				<form class="flex flex-col sm:flex-row gap-3 justify-center">
+					<input
+						type="email"
+						required
+						placeholder="you@example.com"
+						class="px-4 py-3 rounded-full bg-[var(--surface-2)] border border-[var(--border)] text-[var(--text)] placeholder-[var(--text-muted)] focus:outline-none focus:border-[var(--accent)] flex-1"
+					/>
+					<button
+						type="submit"
+						class="btn-accent px-8 py-3 rounded-full font-heading font-semibold transition-all"
+					>
+						Notify Me
+					</button>
+				</form>
+			</div>
+		</div>
+	</section>
+</Layout>
