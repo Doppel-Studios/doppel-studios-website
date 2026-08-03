@@ -1,0 +1,46 @@
+---
+import '../styles/global.css';
+
+interface Props {
+	title: string;
+	description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="/images/tranquil-pond-icon.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content={description} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:type" content="website" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600;700&display=swap" rel="stylesheet" />
+		<title>{title}</title>
+	</head>
+	<body class="bg-black text-white font-[Comfortaa]">
+		<header class="flex items-center justify-between px-6 py-5 max-w-5xl mx-auto">
+			<a href="/" class="flex items-center gap-2">
+				<img src="/images/logo.png" alt="Doppel Studios" class="h-8 w-auto" />
+			</a>
+			<nav class="flex gap-6 text-sm">
+				<a href="/tranquil-pond" class="hover:text-pink-300 transition-colors">Tranquil Pond</a>
+				<a href="/contact" class="hover:text-pink-300 transition-colors">Contact</a>
+			</nav>
+		</header>
+		<main>
+			<slot />
+		</main>
+		<footer class="max-w-5xl mx-auto px-6 py-10 text-sm text-white/50 flex flex-col sm:flex-row justify-between gap-4 border-t border-white/10 mt-20">
+			<p>&copy; {new Date().getFullYear()} Doppel Studios LLC</p>
+			<a href="/privacy" class="hover:text-white/80 transition-colors">Privacy Policy</a>
+		</footer>
+	</body>
+</html>
