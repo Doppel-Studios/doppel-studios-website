@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import AccentGlow from '../components/AccentGlow.astro';
 import GameIcon from '../components/GameIcon.astro';
+import MailingListForm from '../components/MailingListForm.astro';
 import { games } from '../data/games';
 
 const game = games.find((g) => g.slug === 'gallery-gestalt')!;
@@ -30,20 +31,7 @@ const game = games.find((g) => g.slug === 'gallery-gestalt')!;
 				<p class="text-[var(--text-muted)] mb-6">
 					Gallery Gestalt is still in development. Sign up to hear when it's ready to play.
 				</p>
-				<form class="flex flex-col sm:flex-row gap-3 justify-center">
-					<input
-						type="email"
-						required
-						placeholder="you@example.com"
-						class="px-4 py-3 rounded-full bg-[var(--surface-2)] border border-[var(--border)] text-[var(--text)] placeholder-[var(--text-muted)] focus:outline-none focus:border-[var(--accent)] flex-1"
-					/>
-					<button
-						type="submit"
-						class="btn-accent px-8 py-3 rounded-full font-heading font-semibold transition-all"
-					>
-						Notify Me
-					</button>
-				</form>
+				<MailingListForm buttonLabel="Notify Me" />
 			</div>
 		</div>
 	</section>

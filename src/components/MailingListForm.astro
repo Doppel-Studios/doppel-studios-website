@@ -1,0 +1,32 @@
+---
+interface Props {
+	buttonLabel?: string;
+}
+
+const { buttonLabel = 'Sign Up' } = Astro.props;
+
+const BUTTONDOWN_USERNAME = 'doppelstudios';
+---
+
+<form
+	action={`https://buttondown.com/api/emails/embed-subscribe/${BUTTONDOWN_USERNAME}`}
+	method="post"
+	target="popupwindow"
+	onsubmit={`window.open('https://buttondown.com/${BUTTONDOWN_USERNAME}', 'popupwindow')`}
+	class="flex flex-col sm:flex-row gap-3 justify-center"
+>
+	<input
+		type="email"
+		name="email"
+		required
+		placeholder="you@example.com"
+		class="px-4 py-3 rounded-full bg-[var(--surface-2)] border border-[var(--border)] text-[var(--text)] placeholder-[var(--text-muted)] focus:outline-none focus:border-[var(--accent)] flex-1"
+	/>
+	<input type="hidden" value="1" name="embed" />
+	<button
+		type="submit"
+		class="btn-accent px-8 py-3 rounded-full font-heading font-semibold transition-all"
+	>
+		{buttonLabel}
+	</button>
+</form>

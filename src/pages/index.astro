@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import AccentGlow from '../components/AccentGlow.astro';
 import GameIcon from '../components/GameIcon.astro';
+import MailingListForm from '../components/MailingListForm.astro';
 import { games } from '../data/games';
 ---
 
@@ -67,20 +68,7 @@ import { games } from '../data/games';
 				Want to get updates on community events, learn about how we made our games, or find out
 				what we're up to now?
 			</p>
-			<form class="flex flex-col sm:flex-row gap-3 justify-center">
-				<input
-					type="email"
-					required
-					placeholder="you@example.com"
-					class="px-4 py-3 rounded-full bg-[var(--surface-2)] border border-[var(--border)] text-[var(--text)] placeholder-[var(--text-muted)] focus:outline-none focus:border-[var(--accent)] flex-1"
-				/>
-				<button
-					type="submit"
-					class="btn-accent px-8 py-3 rounded-full font-heading font-semibold transition-all"
-				>
-					Sign Up
-				</button>
-			</form>
+			<MailingListForm buttonLabel="Sign Up" />
 		</div>
 	</section>
 </Layout>
