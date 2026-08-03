@@ -3,9 +3,31 @@ import Layout from '../layouts/Layout.astro';
 import AccentGlow from '../components/AccentGlow.astro';
 import GameIcon from '../components/GameIcon.astro';
 import MailingListForm from '../components/MailingListForm.astro';
-import { games } from '../data/games';
+import { games, stageLabels } from '../data/games';
 
 const game = games.find((g) => g.slug === 'gallery-gestalt')!;
+
+const stageCopy = {
+	beta: {
+		supporting: "Print it out, gather some friends, and let us know what you think.",
+		mailingHeading: 'Want to hear when we launch on Kickstarter?',
+		mailingBody:
+			"Sign up to get updates as Gallery Gestalt moves from beta to a real, physical deck.",
+	},
+	kickstarter: {
+		supporting: 'Help bring a custom deck of Gallery Gestalt cards to life.',
+		mailingHeading: 'Miss the Kickstarter?',
+		mailingBody: 'Join the mailing list to hear about future chances to grab a deck.',
+	},
+	store: {
+		supporting: 'Grab your own deck and start making masterpieces.',
+		mailingHeading: 'Stay in the loop',
+		mailingBody: 'Sign up for updates on new games and expansions from Doppel Studios.',
+	},
+} as const;
+
+const copy = game.stage ? stageCopy[game.stage] : undefined;
+const isExternal = game.primaryCTA?.href.startsWith('http');
 ---
 
 <Layout
@@ -17,19 +39,35 @@ const game = games.find((g) => g.slug === 'gallery-gestalt')!;
 		<AccentGlow />
 		<div class="relative max-w-2xl mx-auto px-6 py-24 text-center">
 			<GameIcon game={game} class="w-28 h-28 mx-auto mb-8 rounded-3xl text-4xl" />
-			<span class="btn-accent inline-block px-3 py-1 rounded-full text-xs font-heading font-semibold mb-4">
-				Coming Soon
-			</span>
+			{game.stage && (
+				<span class="btn-accent inline-block px-3 py-1 rounded-full text-xs font-heading font-semibold mb-4">
+					{stageLabels[game.stage]}
+				</span>
+			)}
 			<h1 class="font-heading text-4xl sm:text-5xl font-bold mb-4">{game.name}</h1>
-			<p class="text-[var(--text-muted)] text-lg mb-12 max-w-lg mx-auto">
+			<p class="text-[var(--text-muted)] text-lg mb-4 max-w-lg mx-auto">
 				Play as artists in a unique world, making masterpieces for a gallery to respond to the
 				momentous times around them.
 			</p>
+			{copy && (
+				<p class="text-[var(--text-muted)] mb-10">{copy.supporting}</p>
+			)}
+
+			{game.primaryCTA && (
+				<a
+					href={game.primaryCTA.href}
+					target={isExternal ? '_blank' : undefined}
+					rel={isExternal ? 'noopener' : undefined}
+					class="btn-accent inline-block px-8 py-3 rounded-full font-heading font-semibold transition-all mb-16"
+				>
+					{game.primaryCTA.label}
+				</a>
+			)}
 
 			<div class="card-surface rounded-3xl px-8 py-10">
-				<h2 class="font-heading text-xl font-semibold mb-3">Be the first to know</h2>
+				<h2 class="font-heading text-xl font-semibold mb-3">{copy?.mailingHeading ?? 'Be the first to know'}</h2>
 				<p class="text-[var(--text-muted)] mb-6">
-					Gallery Gestalt is still in development. Sign up to hear when it's ready to play.
+					{copy?.mailingBody ?? "Sign up to hear when it's ready to play."}
 				</p>
 				<MailingListForm buttonLabel="Notify Me" />
 			</div>

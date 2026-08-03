@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import AccentGlow from '../components/AccentGlow.astro';
 import GameIcon from '../components/GameIcon.astro';
 import MailingListForm from '../components/MailingListForm.astro';
-import { games } from '../data/games';
+import { games, stageLabels } from '../data/games';
 ---
 
 <Layout
@@ -43,9 +43,9 @@ import { games } from '../data/games';
 						<div class="min-w-0">
 							<div class="flex items-center gap-2 mb-1">
 								<h3 class="font-heading text-xl font-semibold">{game.name}</h3>
-								{game.status === 'coming-soon' && (
+								{game.stage && (
 									<span class="text-[10px] uppercase tracking-wide font-semibold px-2 py-0.5 rounded-full link-accent border border-current">
-										Coming Soon
+										{stageLabels[game.stage]}
 									</span>
 								)}
 							</div>
