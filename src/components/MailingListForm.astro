@@ -1,9 +1,11 @@
 ---
 interface Props {
 	buttonLabel?: string;
+	/** Buttondown tag applied to new subscribers, so you can segment them (e.g. beta testers). */
+	tag?: string;
 }
 
-const { buttonLabel = 'Sign Up' } = Astro.props;
+const { buttonLabel = 'Sign Up', tag } = Astro.props;
 
 const BUTTONDOWN_USERNAME = 'doppelstudios';
 ---
@@ -23,6 +25,7 @@ const BUTTONDOWN_USERNAME = 'doppelstudios';
 		class="px-4 py-3 rounded-full bg-[var(--surface-2)] border border-[var(--border)] text-[var(--text)] placeholder-[var(--text-muted)] focus:outline-none focus:border-[var(--accent)] flex-1"
 	/>
 	<input type="hidden" value="1" name="embed" />
+	{tag && <input type="hidden" name="tag" value={tag} />}
 	<button
 		type="submit"
 		class="btn-accent px-8 py-3 rounded-full font-heading font-semibold transition-all"
