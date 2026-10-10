@@ -81,8 +81,7 @@ export const games: Game[] = [
 		},
 		secondaryCTA: {
 			label: 'Get it on itch.io',
-			// TODO(ryan): confirm this is the live itch.io page URL (itch URLs are usually <user>.itch.io/<game>).
-			href: 'https://itch.io/gallery-gestalt',
+			href: 'https://scifiku.itch.io/gallery-gestalt',
 		},
 		discord: 'https://discord.gg/uyCXNkZ7dx',
 		survey: {

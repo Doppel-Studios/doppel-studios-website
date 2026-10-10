@@ -23,6 +23,8 @@ const { size = 'w-5 h-5', class: className = '', items = socials } = Astro.props
 				rel="noopener"
 				aria-label={s.label}
 				title={s.label}
+				data-umami-event="social-click"
+				data-umami-event-platform={s.label}
 				class="transition-colors hover:text-[var(--accent)]"
 			>
 				<svg viewBox="0 0 24 24" class={size} fill="currentColor" aria-hidden="true">

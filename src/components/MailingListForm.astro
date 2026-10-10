@@ -14,7 +14,7 @@ const BUTTONDOWN_USERNAME = 'doppelstudios';
 	action={`https://buttondown.com/api/emails/embed-subscribe/${BUTTONDOWN_USERNAME}`}
 	method="post"
 	target="popupwindow"
-	onsubmit={`window.open('https://buttondown.com/${BUTTONDOWN_USERNAME}', 'popupwindow')`}
+	onsubmit={`window.umami&&window.umami.track('join-list',{source:'${tag ?? 'site'}'});window.open('https://buttondown.com/${BUTTONDOWN_USERNAME}', 'popupwindow')`}
 	class="flex flex-col sm:flex-row gap-3 justify-center"
 >
 	<input

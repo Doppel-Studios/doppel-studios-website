@@ -38,14 +38,15 @@ const isExternal = (href: string) => href.startsWith('http');
 	title="Gallery Gestalt — Doppel Studios"
 	description="Gallery Gestalt is a free print-and-play tabletop game where you play artists making masterpieces for a gallery, responding to the momentous times around you."
 	accent={game.accent}
+	image="/images/og-gallery-gestalt.png"
 >
 	<!-- Shown only when someone arrives from the QR code on the rules (…/gallery-gestalt?ref=rules). -->
 	<div id="played-banner" hidden class="border-b border-[var(--border)] bg-[color-mix(in_srgb,var(--accent)_16%,var(--bg))]">
 		<div class="max-w-3xl mx-auto px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
 			<p class="font-heading font-semibold">Thanks for playing! Two quick things:</p>
 			<div class="flex gap-3">
-				<a href="#survey" class="btn-accent px-5 py-2 rounded-full text-sm font-heading font-semibold">Take the survey</a>
-				<a href="#join" class="btn-outline px-5 py-2 rounded-full text-sm font-heading font-semibold">Join the list</a>
+				<a href="#survey" data-umami-event="qr-banner-survey" class="btn-accent px-5 py-2 rounded-full text-sm font-heading font-semibold">Take the survey</a>
+				<a href="#join" data-umami-event="qr-banner-join" class="btn-outline px-5 py-2 rounded-full text-sm font-heading font-semibold">Join the list</a>
 			</div>
 		</div>
 	</div>
@@ -53,26 +54,26 @@ const isExternal = (href: string) => href.startsWith('http');
 	<section class="relative overflow-hidden">
 		<AccentGlow />
 		<BannerPlaceholder src={game.banner} />
-		<div class="relative max-w-2xl mx-auto px-6 pt-48 sm:pt-64 pb-16 text-center">
-			<GameIcon game={game} class="w-28 h-28 mx-auto mb-8 rounded-3xl text-4xl" />
+		<div class="relative max-w-2xl mx-auto px-6 pt-40 sm:pt-64 pb-16 text-center">
+			<GameIcon game={game} class="w-20 h-20 sm:w-28 sm:h-28 mx-auto mb-5 sm:mb-8 rounded-3xl text-3xl sm:text-4xl" />
 			{game.stage && (
 				<span class="btn-accent inline-block px-3 py-1 rounded-full text-xs font-heading font-semibold mb-4">
 					{stageLabels[game.stage]}
 				</span>
 			)}
 			{game.titleArt ? (
-				<h1 class="mb-6">
+				<h1 class="mb-4 sm:mb-6">
 					<img src={game.titleArt} alt={game.name} class="mx-auto w-full max-w-[520px] h-auto" />
 				</h1>
 			) : (
 				<h1 class="font-heading text-4xl sm:text-5xl font-bold mb-4">{game.name}</h1>
 			)}
-			<p class="text-[var(--text-muted)] text-lg mb-4 max-w-lg mx-auto">
+			<p class="text-[var(--text-muted)] text-base sm:text-lg mb-3 sm:mb-4 max-w-lg mx-auto">
 				Play as artists in a unique world, making masterpieces for a gallery to respond to the
 				momentous times around them.
 			</p>
 			{copy && (
-				<p class="text-[var(--text-muted)] mb-10">{copy.supporting}</p>
+				<p class="text-[var(--text-muted)] mb-6 sm:mb-10">{copy.supporting}</p>
 			)}
 
 			<div class="flex flex-wrap items-center justify-center gap-4">
@@ -80,6 +81,7 @@ const isExternal = (href: string) => href.startsWith('http');
 					<a
 						href={game.primaryCTA.href}
 						download={game.primaryCTA.download ? '' : undefined}
+						data-umami-event="download-pdf"
 						target={isExternal(game.primaryCTA.href) ? '_blank' : undefined}
 						rel={isExternal(game.primaryCTA.href) ? 'noopener' : undefined}
 						class="btn-accent inline-block px-8 py-3 rounded-full font-heading font-semibold transition-all"
@@ -90,6 +92,7 @@ const isExternal = (href: string) => href.startsWith('http');
 				{game.secondaryCTA && (
 					<a
 						href={game.secondaryCTA.href}
+						data-umami-event="click-itch"
 						target={isExternal(game.secondaryCTA.href) ? '_blank' : undefined}
 						rel={isExternal(game.secondaryCTA.href) ? 'noopener' : undefined}
 						class="btn-outline inline-block px-8 py-3 rounded-full font-heading font-semibold transition-colors"
@@ -150,6 +153,7 @@ const isExternal = (href: string) => href.startsWith('http');
 							{game.survey && (
 								<a
 									href={game.survey.href}
+								data-umami-event="click-survey"
 									target="_blank"
 									rel="noopener"
 									class="btn-accent shrink-0 self-start sm:self-center inline-block px-8 py-3 rounded-full font-heading font-semibold transition-all"
@@ -175,6 +179,7 @@ const isExternal = (href: string) => href.startsWith('http');
 					</div>
 					<a
 						href={game.discord}
+						data-umami-event="click-discord"
 						target="_blank"
 						rel="noopener"
 						class="btn-outline shrink-0 self-start sm:self-center inline-block px-8 py-3 rounded-full font-heading font-semibold transition-colors"
@@ -189,6 +194,9 @@ const isExternal = (href: string) => href.startsWith('http');
 	<script is:inline>
 		if (new URLSearchParams(location.search).get('ref') === 'rules') {
 			document.getElementById('played-banner').hidden = false;
+			window.addEventListener('load', function () {
+				if (window.umami) window.umami.track('qr-visit');
+			});
 		}
 	</script>
 </Layout>
