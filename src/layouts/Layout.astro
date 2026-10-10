@@ -42,13 +42,12 @@ const ogImage = new URL(image, Astro.site).href;
 			rel="stylesheet"
 		/>
 		<title>{title}</title>
-		<!-- Umami Cloud analytics: cookie-free; ignores localhost/previews and Do Not Track. -->
+		<!-- Umami Cloud analytics: cookie-free; counts only the real domain (ignores localhost/previews). -->
 		<script
 			defer
 			src="https://cloud.umami.is/script.js"
 			data-website-id="529b3712-daf6-475f-a2ed-7da3232f8384"
 			data-domains="doppelstudios.com,www.doppelstudios.com"
-			data-do-not-track="true"
 		></script>
 	</head>
 	<body
