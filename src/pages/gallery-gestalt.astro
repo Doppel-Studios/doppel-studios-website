@@ -51,10 +51,10 @@ const isExternal = (href: string) => href.startsWith('http');
 		</div>
 	</div>
 
-	<section class="relative overflow-hidden">
+	<section class="relative overflow-hidden hero-fluid">
 		<AccentGlow />
-		<BannerPlaceholder src={game.banner} anchor="top" />
-		<div class="relative max-w-2xl mx-auto px-6 pt-40 sm:pt-64 pb-16 text-center">
+		<BannerPlaceholder src={game.banner} anchor="top" fluid />
+		<div class="relative max-w-2xl mx-auto px-6 hero-fluid-content pb-16 text-center">
 			<GameIcon game={game} class="w-20 h-20 sm:w-28 sm:h-28 mx-auto mb-5 sm:mb-8 rounded-3xl text-3xl sm:text-4xl" />
 			{game.stage && (
 				<span class="btn-accent inline-block px-3 py-1 rounded-full text-xs font-heading font-semibold mb-4">

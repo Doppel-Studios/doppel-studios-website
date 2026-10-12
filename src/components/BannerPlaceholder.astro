@@ -4,14 +4,22 @@ interface Props {
 	src?: string;
 	/** Which edge of the image stays put when the strip crops it: the center (default), the top (crops from the bottom), or the bottom (crops from the top). */
 	anchor?: 'center' | 'top' | 'bottom';
+	/**
+	 * Scale the strip's height with the window width (see .hero-fluid in global.css) so a wide banner
+	 * shows in full, with a softer fade. The parent section needs the `hero-fluid` class.
+	 */
+	fluid?: boolean;
 }
 
-const { src, anchor = 'center' } = Astro.props;
+const { src, anchor = 'center', fluid = false } = Astro.props;
+const fade = fluid
+	? 'black 0%, black 55%, transparent 100%'
+	: 'black 0%, black 25%, transparent 88%';
 ---
 
 <div
-	class="pointer-events-none absolute inset-x-0 top-0 h-40 sm:h-56 overflow-hidden"
-	style="mask-image: linear-gradient(to bottom, black 0%, black 25%, transparent 88%); -webkit-mask-image: linear-gradient(to bottom, black 0%, black 25%, transparent 88%);"
+	class:list={['pointer-events-none absolute inset-x-0 top-0 overflow-hidden', fluid ? 'banner-fluid' : 'h-40 sm:h-56']}
+	style={`mask-image: linear-gradient(to bottom, ${fade}); -webkit-mask-image: linear-gradient(to bottom, ${fade});`}
 >
 	{
 		src ? (

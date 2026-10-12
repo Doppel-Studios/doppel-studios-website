@@ -47,6 +47,18 @@ body {
 	filter: brightness(1.15);
 }
 
+/* Hero whose banner (a 4:1 image) scales with the window so it shows in full instead of a fixed crop.
+   The content below it starts partway up the banner's faded bottom edge. */
+.hero-fluid {
+	--banner-h: clamp(160px, 25vw, 480px);
+}
+.hero-fluid .banner-fluid {
+	height: var(--banner-h);
+}
+.hero-fluid-content {
+	padding-top: max(160px, calc(var(--banner-h) * 0.55));
+}
+
 .card-surface {
 	background: var(--surface);
 	border: 1px solid var(--border);
