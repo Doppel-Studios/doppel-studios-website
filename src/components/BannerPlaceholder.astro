@@ -2,9 +2,11 @@
 interface Props {
 	/** Real banner image path, once one exists. Falls back to a generated abstract placeholder. */
 	src?: string;
+	/** Which edge of the image stays put when the strip crops it: the center (default), the top (crops from the bottom), or the bottom (crops from the top). */
+	anchor?: 'center' | 'top' | 'bottom';
 }
 
-const { src } = Astro.props;
+const { src, anchor = 'center' } = Astro.props;
 ---
 
 <div
@@ -13,7 +15,7 @@ const { src } = Astro.props;
 >
 	{
 		src ? (
-			<img src={src} alt="" class="w-full h-full object-cover" />
+			<img src={src} alt="" class:list={['w-full h-full object-cover', anchor === 'top' && 'object-top', anchor === 'bottom' && 'object-bottom']} />
 		) : (
 			<svg viewBox="0 0 1600 400" preserveAspectRatio="xMidYMid slice" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
 				<defs>
