@@ -38,7 +38,7 @@ const isExternal = (href: string) => href.startsWith('http');
 	title="Gallery Gestalt — Doppel Studios"
 	description="Gallery Gestalt is a free print-and-play tabletop game for ages 8+, 1–9 players, and 1–2 hours. Play artists making masterpieces for a gallery, responding to the momentous times around you."
 	accent={game.accent}
-	image="/images/og-gallery-gestalt.png"
+	image="/images/og-gallery-gestalt-2.png"
 >
 	<!-- Shown only when someone arrives from the QR code on the rules (…/gallery-gestalt?ref=rules). -->
 	<div id="played-banner" hidden class="border-b border-[var(--border)] bg-[color-mix(in_srgb,var(--accent)_16%,var(--bg))]">
@@ -63,7 +63,7 @@ const isExternal = (href: string) => href.startsWith('http');
 			)}
 			{game.titleArt ? (
 				<h1 class="mb-4 sm:mb-6">
-					<img src={game.titleArt} alt={`${game.name}: a game of art, inspiration, and creativity`} class="mx-auto w-full max-w-[520px] h-auto" />
+					<img src={game.titleArt} alt={`${game.name}: ages 8+, 1–2 hours, 1–9 players`} class="mx-auto w-full max-w-[520px] h-auto" />
 				</h1>
 			) : (
 				<h1 class="font-heading text-4xl sm:text-5xl font-bold mb-4">{game.name}</h1>
